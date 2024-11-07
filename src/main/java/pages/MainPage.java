@@ -12,5 +12,6 @@ public class MainPage extends BaseTest {
 
         String text = driver.findElement(By.xpath("//p[.='Your email or password is incorrect!']")).getText();
         Assert.assertEquals(message,text);
+        screenshot();
     }
 }

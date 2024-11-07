@@ -24,6 +24,7 @@ public class LoginPage extends BaseTest{
     @Step("Login giris butonuna basilir")
     public void loginButton(){
         driver.findElement(By.cssSelector("[data-qa='login-button']")).click();
+        screenshot();
     }
 
 }

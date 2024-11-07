@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class BaseTest extends BaseLibrary{
 
 
-    @BeforeMethod
+    @BeforeMethod  // Tüm test ve methodlardan önce calisir
     public void openBrowser(){
         driver = new EdgeDriver();
         driver.get("https://www.automationexercise.com/");
@@ -18,7 +18,7 @@ public class BaseTest extends BaseLibrary{
 
     }
 
-    @AfterMethod
+    @AfterMethod // Tüm test ve methodlardan sonra calisir
     public void teardown(){
         driver.quit();
     }

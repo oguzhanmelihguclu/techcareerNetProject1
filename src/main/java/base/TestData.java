@@ -6,7 +6,7 @@ public class TestData {
 
    Random random = new Random();
    public String userName = "testUser";
-   Object random1 = random.nextInt(50);
+   Object random1 = random.nextInt(90);
    public String singUpMail = "sezginmertt" + random1  + "@yahoo.com";
 
    public String password = "45465sdoS";

@@ -14,7 +14,7 @@ public class RegisterTest extends BaseTest {
     HomePage homePage = new HomePage();
 
     @Test
-    public void registerSuccessFullControl() {
+    public void registerSuccessFullControl() { // Kayit olma methodu
 
         registerPage.singUpLogin();
         registerPage.userName(userName);

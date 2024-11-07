@@ -51,6 +51,7 @@ public class RegisterPage extends BaseTest {
         WebElement webElement2 = driver.findElement(By.cssSelector("#months"));
         Select select2 = new Select(webElement2);
         select2.selectByVisibleText(textMonth);
+        screenshot();
     }
 
     @Step("Dogum tarihi için yil girilir")

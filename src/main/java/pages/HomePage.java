@@ -14,6 +14,7 @@ public class HomePage extends BaseTest {
         System.out.println(text);
 
         Assert.assertEquals(value ,text);
+        screenshot();
     }
 
     public void loginControl(String message){
