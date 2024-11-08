@@ -18,7 +18,7 @@ public class BaseTest extends BaseLibrary{
 
     }
 
-    @AfterMethod // Tüm test ve methodlardan sonra calisir
+   @AfterMethod // Tüm test ve methodlardan sonra calisir
     public void teardown(){
         driver.quit();
     }

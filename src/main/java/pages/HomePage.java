@@ -22,4 +22,6 @@ public class HomePage extends BaseTest {
         System.out.println(message);
         Assert.assertEquals(message,text);
     }
+
+
 }
