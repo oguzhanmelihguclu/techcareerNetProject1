@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     triggers {
-        cron('53 22 * * *') // Her gün 22:30'da çalışır
+        cron('02 23 * * *') // Her gün 22:30'da çalışır
     }
 
     tools {
-        maven 'Maven 3.9.9'  // Jenkins'te tanımlı olan Maven adı
-        jdk 'Java 17'        // Java versiyonu
+        MAVEN_HOME 'Maven 3.9.9'  // Jenkins'te tanımlı olan Maven adı
+        JAVA_HOME 'Java 17.0.14'        // Java versiyonu
     }
 
     stages {
