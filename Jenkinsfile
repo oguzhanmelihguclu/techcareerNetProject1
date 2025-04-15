@@ -15,12 +15,13 @@ pipeline {
             }
         }
 
-        stage('Build & Test') {
-            steps {
-                echo 'Running Maven tests...'
-                sh 'mvn clean test'
-            }
+    stage('Build & Test') {
+        steps {
+            echo 'Running Maven tests...'
+            bat 'mvn clean install'
         }
+    }
+
 
         stage('Push to GitHub') {
             when {
