@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     triggers {
-        cron('29 22 * * *')
+        cron('34 22 * * *')
     }
 
     stages {
         stage('Build') {
             steps {
-                echo 'Pipeline çalıştı! Saat 22:29 (10:29 PM)'
+                echo 'Pipeline çalıştı! Saat 22:34 (10:34 PM)'
             }
         }
     }
