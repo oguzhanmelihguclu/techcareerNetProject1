@@ -17,7 +17,7 @@ public class AddToCartTest extends BaseTest {
         driver.navigate().refresh();
         productPage.cart();
         productPage.addToCartControl("Women > Tops");
-
+//
 
     }
 }
