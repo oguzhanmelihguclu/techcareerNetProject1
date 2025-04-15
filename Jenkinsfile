@@ -1,39 +1,53 @@
 pipeline {
     agent any
 
-    triggers {
-        cron('26 23 * * *') // Her gün 22:30'da çalışır
-    }
-
-    tools {
-        MAVEN_HOME 'Maven 3.9.9'  // Jenkins'te tanımlı olan Maven adı
-        JAVA_HOME 'Java 17.0.14'        // Java versiyonu
+    environment {
+        RECIPIENT = 'oguzhanmguclu@gmail.com'
+        GIT_CREDENTIALS_ID = 'dc56b904-2c60-4991-91e7-e86def0e981b'
+        TARGET_BRANCH = 'main'
+        REPO_URL = 'https://github.com/oguzhanmelihguclu/techcareerNetProject1.git'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/sezginmert/techcareerNetProject.git' // GitHub repo URL
+                checkout scm
             }
         }
 
         stage('Build & Test') {
             steps {
+                echo 'Running Maven tests...'
                 sh 'mvn clean test'
             }
         }
 
-        stage('Generate Report') {
+        stage('Push to GitHub') {
+            when {
+                expression {
+                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
+                }
+            }
             steps {
-                sh 'mvn allure:report'
+                echo 'Tests passed, pushing to GitHub...'
+                withCredentials([usernamePassword(credentialsId: "${GIT_CREDENTIALS_ID}", usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
+                    sh '''
+                    git config user.email "jenkins@example.com"
+                    git config user.name "Jenkins CI"
+
+                    git checkout -B ${TARGET_BRANCH}
+                    git push https://${GIT_USER}:${GIT_PASS}@github.com/oguzhanmelihguclu/techcareerNetProject1.git ${TARGET_BRANCH}
+                    '''
+                }
             }
         }
     }
 
     post {
-        always {
-            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
-            junit 'target/cucumber-reports/*.xml'
+        failure {
+            mail to: "${env.RECIPIENT}",
+                 subject: "🚨 Build FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                 body: "Build başarısız oldu.\n\nDetaylar: ${env.BUILD_URL}console"
         }
     }
 }
