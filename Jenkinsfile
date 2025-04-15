@@ -2,25 +2,14 @@ pipeline {
     agent any
 
     triggers {
-        cron('13 22 * * *')  // Her gün saat 22:13'te çalışır
+        cron('29 22 * * *')
     }
 
     stages {
-        stage('Hazırlık') {
+        stage('Build') {
             steps {
-                echo 'Pipeline başladı - Saat 22:13'
-            }
-        }
-
-        stage('Build Çalıştır') {
-            steps {
-                sh './build.sh'
-            }
-        }
-
-        stage('Temizleme') {
-            steps {
-                echo 'İşlem tamamlandı, cleanup yapılabilir.'
+                echo 'Pipeline çalıştı! Saat 22:29 (10:29 PM)'
             }
         }
     }
+}
